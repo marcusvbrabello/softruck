@@ -1,4 +1,5 @@
-const tracksData = {
+import { TracksData } from "./../@types/tracksData";
+const tracksData: TracksData = {
 	accOn: "2020-01-21",
 	total_time: 12739,
 	total_distance: 37035,
