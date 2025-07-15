@@ -1,4 +1,5 @@
 import resizePixel from "@utils/resizePixel";
+import { useTheme } from "@utils/useThemeColor";
 import { StyleSheet, ViewStyle } from "react-native";
 
 const styles = StyleSheet.create({
@@ -25,7 +26,6 @@ const styles = StyleSheet.create({
 		paddingVertical: resizePixel(12, "height"),
 		paddingHorizontal: resizePixel(12, "width"),
 		marginVertical: resizePixel(6, "height"),
-		backgroundColor: "#f5f5f5",
 		borderRadius: resizePixel(8),
 		borderWidth: 1,
 		minWidth: "100%",
@@ -51,4 +51,17 @@ export const vehicleColor = (color: string): ViewStyle => ({
 	backgroundColor: color,
 });
 
-export const style = () => styles;
+export const style = () => {
+	const colors = useTheme();
+	const { container } = styles;
+
+	const dynamicContainer = {
+		...container,
+		backgroundColor: colors.BACKGROUND,
+	};
+
+	return {
+		...styles,
+		container: dynamicContainer,
+	};
+};
