@@ -1,9 +1,5 @@
-import { Text, View } from "react-native";
+import { AnimatedRoute } from "./Components/AnimatedRoute";
 
 export default function Track() {
-	return (
-		<View>
-			<Text>Track</Text>
-		</View>
-	);
+	return <AnimatedRoute />;
 }
