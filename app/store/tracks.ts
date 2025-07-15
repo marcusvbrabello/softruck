@@ -4,14 +4,17 @@ import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
 const initialState: States = {
-	tracks: [] as TracksData[],
+	trackResponse: {} as TracksData,
+	tracks: [] as Course[],
 	selectedTrack: {} as Course,
 	vehicle: {} as Vehicle,
 };
 
 export const tracksStore = create<States & Actions>(
 	combine(initialState, (set) => ({
-		changeTracks: (payload: TracksData[]) =>
+		changeTrackResponse: (payload: TracksData) =>
+			set((state) => ({ trackResponse: payload })),
+		changeTracks: (payload: Course[]) =>
 			set((state) => ({ tracks: payload })),
 		changeSelectedTrack: (payload: Course) =>
 			set((state) => ({ selectedTrack: payload })),
