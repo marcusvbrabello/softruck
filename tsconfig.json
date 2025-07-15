@@ -2,10 +2,27 @@
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
     "strict": true,
+    "baseUrl": "./",
+    "jsx": "react-native",
+    "target": "esnext",
+    "module": "Node16",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "lib": ["dom", "esnext"],
+    "allowJs": true,
+    "moduleResolution": "node16",
     "paths": {
-      "@/*": [
-        "./*"
-      ]
+      "@assets/*": ["app/assets/*"],
+      "@components/*": ["app/components/*"],
+      "@constants/*": ["app/constants/*"],
+      "@utils/*": ["app/utils/*"],
+      "@hooks/*": ["app/hooks/*"],
+      "@theme/*": ["app/theme/*"],
+      "@models/*": ["app/models/*"],
+      "@view_model/*": ["app/view_model/*"],
+      "@store/*": ["app/store/*"],
+      "@views/*": ["app/views/*"]
     }
   },
   "include": [
