@@ -3,7 +3,7 @@ import { GenericText } from "@components/Texts/GenericText";
 import useListViewModel from "app/view_models/list";
 import { useEffect } from "react";
 import { FlatList, Image, TouchableOpacity, View } from "react-native";
-import { style, vehicleColor } from "./style";
+import { style, vehicleColor } from "./styles";
 
 export default function List() {
 	const {
