@@ -1,11 +1,9 @@
 export interface LoadingProps {
-	width?: number;
-	height?: number;
+	size?: number;
 }
 
 export interface LoadingStyleProps {
 	container: {
-		width: number;
-		height: number;
+		size: number;
 	};
 }

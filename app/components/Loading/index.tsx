@@ -2,17 +2,16 @@ import { ActivityIndicator, View } from "react-native";
 import { style } from "./styles";
 import { LoadingProps } from "./types";
 
-export default function Loading({ width = 150, height = 150 }: LoadingProps) {
+export default function Loading({ size = 150 }: LoadingProps) {
 	const { container } = style({
 		container: {
-			width,
-			height,
+			size,
 		},
 	});
 
 	return (
 		<View style={container}>
-			<ActivityIndicator />
+			<ActivityIndicator size="large" />
 		</View>
 	);
 }

@@ -14,8 +14,8 @@ export const style = (params: LoadingStyleProps) => {
 
 	const dynamicContainer = {
 		...container,
-		width: resizePixel(params?.container?.width, "width"),
-		height: resizePixel(params?.container?.height, "height"),
+		width: resizePixel(params?.container?.size, "width"),
+		height: resizePixel(params?.container?.size, "height"),
 	};
 
 	return { container: dynamicContainer };
