@@ -3,8 +3,8 @@ import { create } from "zustand";
 import { combine } from "zustand/middleware";
 
 const initialState: States = {
-	theme: "light",
-	language: "pt",
+	theme: "",
+	language: "",
 };
 
 export const settingsStore = create<States & Actions>(
