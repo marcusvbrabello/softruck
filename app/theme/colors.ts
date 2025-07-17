@@ -13,11 +13,11 @@ const colors: Colors = {
 	light: {
 		...standardColors,
 		TEXT: "#262424",
-		BACKGROUND: "#E8F1FF",
+		BACKGROUND: "#f4f3f4",
 	},
 	dark: {
 		...standardColors,
-		TEXT: "#E8F1FF",
+		TEXT: "#f4f3f4",
 		BACKGROUND: "#262424",
 	},
 };
