@@ -18,9 +18,9 @@ Aplicação frontend desenvolvida como parte do processo seletivo da Softruck. O
 
 Abaixo estão algumas capturas de tela do aplicativo em funcionamento:
 
-|              Tela Inicial               |          Mapa com Carro Animado          |
-| :-------------------------------------: | :--------------------------------------: |
-| ![Tela Inicial](./screenshots/home.png) | ![Mapa com Carro](./screenshots/map.png) |
+|               Tela Inicial               |          Mapa com Carro Animado           |
+| :--------------------------------------: | :---------------------------------------: |
+| ![Tela Inicial](./screenshots/home.jpeg) | ![Mapa com Carro](./screenshots/map.jpeg) |
 
 ## Tecnologias Utilizadas
 
