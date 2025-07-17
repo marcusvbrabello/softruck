@@ -22,7 +22,8 @@
       "@models/*": ["app/models/*"],
       "@view_model/*": ["app/view_model/*"],
       "@store/*": ["app/store/*"],
-      "@views/*": ["app/views/*"]
+      "@views/*": ["app/views/*"],
+      "@i18n/*": ["app/i18n/*"],
     }
   },
   "include": [
