@@ -1,11 +1,11 @@
 import Loading from "@components/Loading";
 import { GenericText } from "@components/Texts/GenericText";
-import i18n, { setLocale } from "@i18n/index";
+import i18n from "@i18n/index";
 import resizePixel from "@utils/resizePixel";
-import { setTheme, useTheme } from "@utils/useThemeColor";
+import { useTheme } from "@utils/useThemeColor";
 import useListViewModel from "app/view_models/list";
 import { CaretRightIcon, MoonIcon, SunDimIcon } from "phosphor-react-native";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import {
 	FlatList,
 	Image,
@@ -39,6 +39,12 @@ export default function List() {
 		vehicle,
 		tracks,
 		isLoadingList,
+		switchLocale,
+		switchTheme,
+		handleSwitchLocale,
+		handleSwitchTheme,
+		toggleSwitchLocale,
+		toggleSwitchTheme,
 		handleListData,
 		formatDate,
 		formatDistance,
@@ -46,7 +52,7 @@ export default function List() {
 		handleTitle,
 	} = useListViewModel();
 
-	const { language, theme, changeTheme } = settings;
+	const { language } = settings;
 
 	useEffect(() => {
 		handleTitle();
@@ -58,26 +64,34 @@ export default function List() {
 		handleListData();
 	}, []);
 
-	const [switchLocale, setSwitchLocale] = useState(false);
-	const [switchTheme, setSwitchTheme] = useState(false);
-
-	const handleSwitchLocale = () => {
-		setSwitchLocale(language === "pt");
-	};
-
-	const handleSwitchTheme = () => {
-		setSwitchTheme(theme === "dark");
-	};
-
-	const toggleSwitchLocale = async () => {
-		setLocale(!switchLocale ? "pt" : "en");
-		setSwitchLocale((previousState) => !previousState);
-	};
-
-	const toggleSwitchTheme = async () => {
-		setTheme(!switchTheme ? "dark" : "light");
-		setSwitchTheme((previousState) => !previousState);
-	};
+	const switchesData = [
+		{
+			left: (
+				<GenericText
+					text="EN"
+					size="MEDIUM"
+					lineHeight="MEDIUM"
+					font="REGULAR"
+				/>
+			),
+			right: (
+				<GenericText
+					text="PT"
+					size="MEDIUM"
+					lineHeight="MEDIUM"
+					font="REGULAR"
+				/>
+			),
+			value: switchLocale,
+			onValueChange: toggleSwitchLocale,
+		},
+		{
+			left: <SunDimIcon size={resizePixel(20)} color={colors.TEXT} />,
+			right: <MoonIcon size={resizePixel(20)} color={colors.TEXT} />,
+			value: switchTheme,
+			onValueChange: toggleSwitchTheme,
+		},
+	];
 
 	return (
 		<ScrollView showsVerticalScrollIndicator={false} style={container}>
@@ -88,50 +102,22 @@ export default function List() {
 			) : (
 				<View style={content}>
 					<View style={switches}>
-						<View style={wrapSwitches}>
-							<GenericText
-								text="EN"
-								size="MEDIUM"
-								lineHeight="MEDIUM"
-								font="REGULAR"
-							/>
-							<Switch
-								trackColor={{
-									false: colors.INFO_LIGHT,
-									true: colors.INFO_LIGHT,
-								}}
-								thumbColor={colors.GRAY}
-								ios_backgroundColor={colors.INFO_LIGHT}
-								onValueChange={toggleSwitchLocale}
-								value={switchLocale}
-							/>
-							<GenericText
-								text="PT"
-								size="MEDIUM"
-								lineHeight="MEDIUM"
-								font="REGULAR"
-							/>
-						</View>
-						<View style={wrapSwitches}>
-							<SunDimIcon
-								size={resizePixel(20)}
-								color={colors.TEXT}
-							/>
-							<Switch
-								trackColor={{
-									false: colors.INFO_LIGHT,
-									true: colors.INFO_LIGHT,
-								}}
-								thumbColor={colors.GRAY}
-								ios_backgroundColor={colors.INFO_LIGHT}
-								onValueChange={toggleSwitchTheme}
-								value={switchTheme}
-							/>
-							<MoonIcon
-								size={resizePixel(20)}
-								color={colors.TEXT}
-							/>
-						</View>
+						{switchesData.map((item, index) => (
+							<View style={wrapSwitches} key={index}>
+								{item.left}
+								<Switch
+									trackColor={{
+										false: colors.INFO_LIGHT,
+										true: colors.INFO_LIGHT,
+									}}
+									thumbColor={colors.GRAY_50}
+									ios_backgroundColor={colors.INFO_LIGHT}
+									onValueChange={item.onValueChange}
+									value={item.value}
+								/>
+								{item.right}
+							</View>
+						))}
 					</View>
 
 					<View style={topContent}>
@@ -196,10 +182,21 @@ export default function List() {
 										/>
 									</View>
 								</View>
-								<CaretRightIcon
-									size={resizePixel(20)}
-									color={colors.GRAY}
-								/>
+								<View
+									style={{
+										backgroundColor: colors.TEXT,
+										borderRadius: resizePixel(32),
+										width: resizePixel(32, "width"),
+										height: resizePixel(32, "height"),
+										justifyContent: "center",
+										alignItems: "center",
+									}}
+								>
+									<CaretRightIcon
+										size={resizePixel(16)}
+										color={colors.BACKGROUND}
+									/>
+								</View>
 							</TouchableOpacity>
 						)}
 						showsVerticalScrollIndicator={false}

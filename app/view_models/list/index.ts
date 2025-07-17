@@ -1,7 +1,8 @@
-import i18n from "@i18n/index";
+import i18n, { setLocale } from "@i18n/index";
 import useTrackModel from "@models/tracks";
 import { settingsStore } from "@store/settings";
 import { tracksStore } from "@store/tracks";
+import { setTheme } from "@utils/useThemeColor";
 import { Course } from "app/@types/tracksData";
 import { useNavigation, useRouter } from "expo-router";
 import { useState } from "react";
@@ -18,6 +19,7 @@ const useListViewModel = () => {
 		changeSelectedTrack,
 		changeVehicle,
 	} = store;
+	const { language, theme } = settings;
 
 	const { get } = useTrackModel();
 
@@ -62,10 +64,37 @@ const useListViewModel = () => {
 		navigation.setOptions({ title: i18n.t("select_route") });
 	}
 
+	const [switchLocale, setSwitchLocale] = useState(false);
+	const [switchTheme, setSwitchTheme] = useState(false);
+
+	const handleSwitchLocale = () => {
+		setSwitchLocale(language === "pt");
+	};
+
+	const handleSwitchTheme = () => {
+		setSwitchTheme(theme === "dark");
+	};
+
+	const toggleSwitchLocale = async () => {
+		setLocale(!switchLocale ? "pt" : "en");
+		setSwitchLocale((previousState) => !previousState);
+	};
+
+	const toggleSwitchTheme = async () => {
+		setTheme(!switchTheme ? "dark" : "light");
+		setSwitchTheme((previousState) => !previousState);
+	};
+
 	return {
 		...store,
 		settings,
 		isLoadingList,
+		switchLocale,
+		switchTheme,
+		handleSwitchLocale,
+		handleSwitchTheme,
+		toggleSwitchLocale,
+		toggleSwitchTheme,
 		handleListData,
 		formatDate,
 		formatDistance,
