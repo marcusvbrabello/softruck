@@ -68,7 +68,7 @@ export const AnimatedRoute = () => {
 				<Polyline
 					coordinates={routeCoordinates}
 					strokeWidth={3}
-					strokeColor={colors.GRAY}
+					strokeColor={colors.GRAY_50}
 					lineDashPattern={[5, 5]}
 				/>
 

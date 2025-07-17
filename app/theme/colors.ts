@@ -1,8 +1,13 @@
 import { Colors, StandardColors } from "app/@types/theme/colors";
 
 const standardColors: StandardColors = {
-	PRIMARY: "#3FCF72",
-	GRAY: "#909194",
+	PRIMARY: "#0652BD",
+	GRAY_500: "#707277",
+	GRAY_400: "#909194",
+	GRAY_200: "#B2B2B2",
+	GRAY_100: "#BFC5CB",
+	GRAY_75: "#D2D1D7",
+	GRAY_50: "#F0F0F0",
 	SUCCESS: "#32A54A",
 	WARN: "#F29305",
 	ERROR: "#BF130D",
@@ -13,11 +18,11 @@ const colors: Colors = {
 	light: {
 		...standardColors,
 		TEXT: "#262424",
-		BACKGROUND: "#f4f3f4",
+		BACKGROUND: "#F9F9F9",
 	},
 	dark: {
 		...standardColors,
-		TEXT: "#f4f3f4",
+		TEXT: "#F9F9F9",
 		BACKGROUND: "#262424",
 	},
 };
