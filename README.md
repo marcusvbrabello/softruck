@@ -4,6 +4,24 @@
 
 Aplicação frontend desenvolvida como parte do processo seletivo da Softruck. O projeto consiste em uma tela que exibe um carro animado se deslocando sobre um mapa, com base em dados reais de GPS.
 
+## 📱 Preview do Projeto
+
+### Funcionalidades Principais
+
+-   🗺️ **Mapa Interativo**: Visualização de trajetos GPS em tempo real
+-   🚗 **Animação Realista**: Sprite do carro rotaciona baseado na direção
+-   ⚡ **Velocidade Dinâmica**: Movimento baseado nos dados reais de velocidade
+-   🌍 **Multi-idioma**: Suporte completo PT/EN
+-   🌙 **Temas**: Modo claro/escuro com sincronização do sistema
+
+## 📸 Screenshots
+
+Abaixo estão algumas capturas de tela do aplicativo em funcionamento:
+
+|               Tela Inicial               |          Mapa com Carro Animado           |
+| :--------------------------------------: | :---------------------------------------: |
+| ![Tela Inicial](./screenshots/home.jpeg) | ![Mapa com Carro](./screenshots/map.jpeg) |
+
 ## Tecnologias Utilizadas
 
 ### Framework Principal
@@ -67,27 +85,38 @@ app/
 -   ✅ Velocidade do veículo influencia na animação
 -   ✅ Seleção de diferentes trajetos pelo usuário
 -   ✅ Interface multilíngue (PT/EN)
+-   ✅ **Tema claro/escuro** com switch dinâmico
+-   ✅ **Seletor de idioma** integrado
+
+### Experiência do Usuário
+
+-   🌙 **Modo Escuro/Claro**: Switch para alternar entre temas, com detecção automática do tema do sistema
+-   🌍 **Multilíngue**: Seletor de idioma (Português/Inglês) com persistência da preferência
+-   💾 **Persistência**: Preferências de tema e idioma são salvas localmente
 
 ## Como Executar
 
 ### Pré-requisitos
 
 -   Node.js 18+
--   Expo CLI
--   Dispositivo físico ou emulador
+-   Expo CLI (`npm install -g @expo/cli`)
+-   Dispositivo físico com Expo Go ou emulador configurado
 
-### Instalação
+### Instalação e Execução
 
 ```bash
+# Clone o repositório
+git clone git@github.com:marcusvbrabello/softruck.git | https://github.com/marcusvbrabello/softruck.git
+
 # Instalar dependências
 npm install
 
-# Iniciar o projeto
+# Iniciar o servidor de desenvolvimento
 npm start
 
-# Para plataformas específicas
-npm run android  # Android
-npm run ios      # iOS
+# Escanear QR Code com Expo Go ou:
+npm run android  # Para Android
+npm run ios      # Para iOS
 ```
 
 ## Técnicas Destacadas
@@ -106,3 +135,56 @@ Sistema de redimensionamento automático através da função `resizePixel`, gar
 -   Animações performáticas com transformações CSS nativas
 -   Cálculos geográficos precisos usando fórmula de Haversine
 -   Utilização de componentes nativos do React Native Maps
+
+## Recursos Avançados
+
+### Sistema de Temas
+
+-   Detecção automática do tema do sistema (`useColorScheme`)
+-   Persistência com AsyncStorage
+-   Tema aplicado em todos os componentes, incluindo MapView
+-   Transições suaves entre temas
+
+### Internacionalização Avançada
+
+-   Detecção automática do idioma do dispositivo
+-   Fallback para idioma padrão
+-   Textos dinâmicos em todos os componentes
+-   Formatação de datas e números localizada
+
+## Arquitetura Técnica
+
+### Fluxo de Dados (MVVM)
+
+```
+View (React Components)
+    ↕️
+ViewModel (Custom Hooks)
+    ↕️
+Model (Zustand Stores + Constants)
+```
+
+### Gerenciamento de Estado
+
+-   **Global**: Zustand para tracks e configurações
+-   **Local**: useState para estados de componentes
+-   **Persistente**: AsyncStorage para preferências
+
+### Performance
+
+-   Cálculos geográficos otimizados (Haversine)
+-   Animações baseadas em transformações nativas
+-   Throttling automático para animações fluidas
+
+### Velocidade Baseada em Dados Reais
+
+A animação do veículo utiliza os dados de velocidade (`speed`) registrados no GPS para calcular o tempo real entre pontos, proporcionando uma simulação fiel do trajeto original.
+
+```typescript
+const calculateSpeedBasedDelay = (current: any, next: any): number => {
+	const speedKmh = current.speed || 30;
+	const distance = calculateDistance(current, next);
+	const timeInSeconds = distance / (speedKmh / 3.6);
+	return Math.max(100, Math.min(2000, (timeInSeconds * 1000) / 100));
+};
+```

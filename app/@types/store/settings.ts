@@ -9,5 +9,5 @@ export type Actions = {
 	reset: () => void;
 };
 
-export type Language = "pt" | "en" | "es";
-export type Theme = "light" | "dark";
+export type Language = "pt" | "en" | "";
+export type Theme = "light" | "dark" | "";

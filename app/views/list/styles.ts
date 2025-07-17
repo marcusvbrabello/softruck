@@ -23,12 +23,18 @@ const styles = StyleSheet.create({
 		height: resizePixel(100, "height"),
 	},
 	trackButton: {
-		paddingVertical: resizePixel(12, "height"),
-		paddingHorizontal: resizePixel(12, "width"),
+		paddingVertical: resizePixel(16, "height"),
+		paddingHorizontal: resizePixel(16, "width"),
 		marginVertical: resizePixel(6, "height"),
 		borderRadius: resizePixel(8),
 		borderWidth: 1,
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
 		minWidth: "100%",
+	},
+	contentTrackButton: {
+		width: "90%",
 	},
 	contentContainerStyle: {
 		paddingTop: resizePixel(16, "height"),
@@ -42,6 +48,22 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 		gap: resizePixel(8, "width"),
 	},
+	row: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+	},
+	wrapSwitches: {
+		flexDirection: "row",
+		alignItems: "center",
+		gap: resizePixel(8, "width"),
+	},
+	switches: {
+		flexDirection: "row",
+		justifyContent: "space-between",
+		alignItems: "center",
+		width: "100%",
+		marginBottom: resizePixel(16, "height"),
+	},
 });
 
 export const vehicleColor = (color: string): ViewStyle => ({
@@ -53,15 +75,21 @@ export const vehicleColor = (color: string): ViewStyle => ({
 
 export const style = () => {
 	const colors = useTheme();
-	const { container } = styles;
+	const { container, trackButton } = styles;
 
 	const dynamicContainer = {
 		...container,
 		backgroundColor: colors.BACKGROUND,
 	};
 
+	const dynamicTrackButton = {
+		...trackButton,
+		borderColor: colors.TEXT,
+	};
+
 	return {
 		...styles,
 		container: dynamicContainer,
+		trackButton: dynamicTrackButton,
 	};
 };

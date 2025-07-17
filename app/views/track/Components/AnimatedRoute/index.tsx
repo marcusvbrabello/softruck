@@ -116,13 +116,6 @@ export const AnimatedRoute = () => {
 						flat
 						anchor={{ x: 0.5, y: 0.5 }}
 					>
-						{/* <Image
-							source={{
-								uri: "https://cdn-icons-png.flaticon.com/512/854/854866.png",
-							}}
-							style={vehicleIcon}
-							resizeMode="contain"
-						/> */}
 						<SpriteCar direction={currentPoint.direction} />
 					</Marker>
 				)}
