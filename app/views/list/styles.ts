@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 		minWidth: "100%",
 	},
 	contentTrackButton: {
-		width: "90%",
+		width: "85%",
 	},
 	contentContainerStyle: {
 		paddingTop: resizePixel(16, "height"),
