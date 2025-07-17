@@ -1,6 +1,5 @@
 import { useTheme } from "@utils/useThemeColor";
 import { Stack } from "expo-router";
-import i18n from "./i18n";
 
 export default function RootLayout() {
 	const colors = useTheme();
@@ -18,14 +17,8 @@ export default function RootLayout() {
 				},
 			}}
 		>
-			<Stack.Screen
-				name="views/list/index"
-				options={{ title: i18n.t("select_route") }}
-			/>
-			<Stack.Screen
-				name="views/track/index"
-				options={{ title: i18n.t("route_details") }}
-			/>
+			<Stack.Screen name="views/list/index" />
+			<Stack.Screen name="views/track/index" />
 		</Stack>
 	);
 }
